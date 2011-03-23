@@ -30,7 +30,7 @@ emails = {
       for (var i = 0, len = keys.length; i < len; i++) {
         k = keys[i];
         if (!mailOptions.hasOwnProperty(k))
-          mailOptions[k] = app.set('mailOptions')[k]
+          mailOptions[k] = app.set('mailOptions')[k];
       }
 
       console.log('[SENDING MAIL]', sys.inspect(mailOptions));
@@ -57,7 +57,7 @@ app.helpers(require('./helpers.js').helpers);
 app.dynamicHelpers(require('./helpers.js').dynamicHelpers);
 
 app.configure('development', function() {
-  app.set('db-uri', 'mongodb://localhost/nodepad-development');
+  app.set('db-uri', 'mongodb://localhost/dev');
   app.use(express.errorHandler({ dumpExceptions: true }));
 });
 
@@ -75,7 +75,7 @@ app.configure(function() {
   app.use(express.bodyParser());
   app.use(express.cookieParser());
   app.use(express.session({ store: mongoStore(app.set('db-uri')), secret: 'topsecret' }));
-  app.use(express.logger({ format: '\x1b[1m:method\x1b[0m \x1b[33m:url\x1b[0m :response-time ms' }))
+  app.use(express.logger({ format: '\x1b[1m:method\x1b[0m \x1b[33m:url\x1b[0m :response-time ms' }));
   app.use(express.methodOverride());
   app.use(stylus.middleware({ src: __dirname + '/public' }));
   app.use(express.static(__dirname + '/public'));
@@ -91,7 +91,7 @@ models.defineModels(mongoose, function() {
   app.User = User = mongoose.model('User');
   app.LoginToken = LoginToken = mongoose.model('LoginToken');
   db = mongoose.connect(app.set('db-uri'));
-})
+});
 
 function authenticateFromLoginToken(req, res, next) {
   var cookie = JSON.parse(req.cookies.logintoken);
@@ -139,7 +139,7 @@ function loadUser(req, res, next) {
 }
 
 app.get('/', loadUser, function(req, res) {
-  res.redirect('/documents')
+  res.redirect('/documents');
 });
 
 // Error handling
@@ -382,6 +382,6 @@ app.del('/sessions', loadUser, function(req, res) {
 
 if (!module.parent) {
   app.listen(3000);
-  console.log('Express server listening on port %d, environment: %s', app.address().port, app.settings.env)
+  console.log('Express server listening on port %d, environment: %s', app.address().port, app.settings.env);
   console.log('Using connect %s, Express %s, Jade %s', connect.version, express.version, jade.version);
 }

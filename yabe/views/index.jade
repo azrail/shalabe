@@ -1,2 +1,28 @@
 h1= title
 p Welcome to #{title}
+
+form(method="post", action="/artikel/new")
+  fieldset
+    legend Artikel
+    p
+      label(for="artikel[title]") Titel:
+        input(type="text", name="artikel[title]")
+    p
+      label(for="artikel[body]") Artikel:
+        textarea(name="artikel[body]")
+  fieldset
+    legend Location
+    p
+      label(for="user[city]") City:
+        input(type="text", name="user[city]")
+    p
+      select(name="user[province]")
+        option(value="") -- Select Province --
+        option(value="AB") Alberta
+        option(value="BC") British Columbia
+        option(value="SK") Saskatchewan
+        option(value="MB") Manitoba
+        option(value="ON") Ontario
+        option(value="QC") Quebec
+  p.buttons
+    input(type="submit", value="Save")

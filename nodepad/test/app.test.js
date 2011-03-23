@@ -16,7 +16,7 @@ testHelper.setup(function() {
   // Fixtures
   var user = new app.User({'email' : 'alex@example.com', 'password' : 'test' });
   user.save(function() {
-    testHelper.run(exports)
+    testHelper.run(exports);
   });
 });
 

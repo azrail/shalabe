@@ -14,7 +14,7 @@ while true;
   # echo "bla" > file.txt # replaces file
   # echo "bla" >> file.txt # appends to file
   #
-  node app.js $* > ./nodejs.log 2>&1;
+  node --debug app.js $* > ./nodejs.log 2>&1;
 
   exit_value="$?" ;
   echo stopping $(date);

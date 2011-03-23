@@ -36,7 +36,7 @@ function watch(parse_file_list_dirname,extention,callback) {
     }
     else
      that.restarted=false;
- }
+ };
 
  var parse_file_list1 = function(dir, files, extention)
  {
