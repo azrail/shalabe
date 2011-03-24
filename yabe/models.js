@@ -1,6 +1,5 @@
 var crypto = require('crypto'),markdown = require('markdown').markdown, Document;
 
-
 function defineModels(mongoose, fn) {
 	var Schema = mongoose.Schema, ObjectId = Schema.ObjectId;
 

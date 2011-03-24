@@ -6,7 +6,7 @@ var express = require('express@2.0.0beta3'), connect = require('connect@1.0.6'),
 };
 
 /**
- * Neustarten des Node Servers wenn sich dateien geändert haben
+ * Neustarten des Node Servers wenn sich dateien geÃ¤ndert haben
  */
 var autoexit_watch=require('./autoexit.js').watch;
 autoexit_watch(__dirname,".js");
@@ -106,7 +106,7 @@ app.post('/artikel/new.:format?', function(req, res) {
 
 // Delete document
 app.get('/artikel/delete/:id?', function(req, res) {
-	sys.debug("Lösche: " + req.params.id);
+	sys.debug("Lï¿½sche: " + req.params.id);
 	Document.findOne({
 		_id : req.params.id
 	}, function(err, d) {
