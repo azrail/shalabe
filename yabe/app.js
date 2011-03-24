@@ -5,6 +5,14 @@ var express = require('express@2.0.0beta3'), connect = require('connect@1.0.6'),
 	production : {}
 };
 
+/**
+ * Neustarten des Node Servers wenn sich dateien geändert haben
+ */
+var autoexit_watch=require('./autoexit.js').watch;
+autoexit_watch(__dirname,".js");
+autoexit_watch(__dirname+"/views",".jade");
+autoexit_watch(__dirname+"/views/artikel",".jade");
+
 app.helpers(require('./helpers.js').helpers);
 app.dynamicHelpers(require('./helpers.js').dynamicHelpers);
 
