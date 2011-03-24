@@ -49,11 +49,13 @@ models.defineModels(mongoose, function() {
 
 // Routes
 app.get('/', function(req, res) {
-	// res.render('index.jade', {
-	// title : 'Express'
-	// });
-	//ascending
-	Document.find({}, [], {sort:[['date',-1]]} , function(err, documents) {
+	Document.find({}, [], {
+		sort : [
+			[
+					'date', -1
+			]
+		]
+	}, function(err, documents) {
 		sys.debug(documents);
 		switch (req.params.format) {
 			case 'json':
@@ -109,14 +111,14 @@ app.get('/artikel/delete/:id?', function(req, res) {
 	});
 });
 
-//Update document
+// Update document
 app.post('/artikel/update/:id?', function(req, res) {
 	sys.debug("Update: " + req.params.id);
 	Document.findOne({
 		_id : req.params.id
 	}, function(err, d) {
 		d.title = req.body.artikel.title;
-	    d.body = req.body.artikel.body;
+		d.body = req.body.artikel.body;
 		if (!d)
 			return next(new NotFound('Document not found'));
 		d.save(function() {

@@ -11,7 +11,7 @@ function defineModels(mongoose, fn) {
 	Document = new Schema({
 		'title' : String,
 		'body' : String,
-		'date' :  { type: Date, default: Date.now }
+		'date' : { type: Date, default: Date.now }
 	});
 	
 	Document.virtual('id').get(function() {
