@@ -1,0 +1,18 @@
+h1= title
+p yet another blog
+
+div#flash
+	!{flashMessages}
+
+form(method="post", action="/artikel/update/" +document._id)
+	fieldset
+		legend Artikel
+		p
+			label(for="artikel[title]") Titel:
+			input(type="text", name="artikel[title]", value=document.title)
+		p
+			label(for="artikel[body]") Artikel:
+			textarea(name="artikel[body]")
+				#{document.body}
+	p.buttons
+	input(type="submit", value="Update")

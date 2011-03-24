@@ -48,10 +48,27 @@ models.defineModels(mongoose, function() {
 });
 
 // Routes
-
 app.get('/', function(req, res) {
-	res.render('index.jade', {
-		title : 'Express'
+	// res.render('index.jade', {
+	// title : 'Express'
+	// });
+	//ascending
+	Document.find({}, [], {sort:[['date',-1]]} , function(err, documents) {
+		sys.debug(documents);
+		switch (req.params.format) {
+			case 'json':
+				res.send(documents.map(function(d) {
+					return d.toObject();
+				}));
+				break;
+			default:
+				res.render('index.jade', {
+					title : 'yab.',
+					locals : {
+						documents : documents
+					}
+				});
+		}
 	});
 });
 
@@ -77,8 +94,57 @@ app.post('/artikel/new.:format?', function(req, res) {
 	});
 });
 
-// Only listen on $ node app.js
+// Delete document
+app.get('/artikel/delete/:id?', function(req, res) {
+	sys.debug("Lösche: " + req.params.id);
+	Document.findOne({
+		_id : req.params.id
+	}, function(err, d) {
+		if (!d)
+			return next(new NotFound('Document not found'));
+		d.remove(function() {
+			req.flash('info', 'Document deleted');
+			res.redirect('/');
+		});
+	});
+});
 
+//Update document
+app.post('/artikel/update/:id?', function(req, res) {
+	sys.debug("Update: " + req.params.id);
+	Document.findOne({
+		_id : req.params.id
+	}, function(err, d) {
+		d.title = req.body.artikel.title;
+	    d.body = req.body.artikel.body;
+		if (!d)
+			return next(new NotFound('Document not found'));
+		d.save(function() {
+			req.flash('info', 'Document updated');
+			res.redirect('/');
+		});
+	});
+});
+
+// Edit document
+app.get('/artikel/edit/:id?', function(req, res) {
+	sys.debug("Editiere: " + req.params.id);
+	Document.findOne({
+		_id : req.params.id
+	}, function(err, d) {
+		if (!d)
+			return next(new NotFound('Document not found'));
+		
+		res.render('artikel/edit.jade', {
+			title : 'yab.',
+			locals : {
+				document : d
+			}
+		});
+	});
+});
+
+// Only listen on $ node app.js
 if (!module.parent) {
 	app.listen(3001);
 	console.log("Express server listening on port %d", app.address().port);

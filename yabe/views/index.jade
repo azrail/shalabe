@@ -1,28 +1,37 @@
 h1= title
-p Welcome to #{title}
+p yet another blog
 
+div#flash
+	!{flashMessages}
+	
+#left.outline-view
+	#DocumentTitles
+		div#artikel-list
+		- for (var d in documents)
+			div#artikel
+				div#titel
+					h1
+						a(id='document-title-' + documents[d].id, href='/artikel/' + documents[d].id)
+							=documents[d].title
+				div#artikel
+					p
+						!{documents[d].body_markdown}
+				div#options
+					a(id='document-delete-' + documents[d].id, href='/artikel/delete/' + documents[d].id)
+						p delete
+					a(id='document-update-' + documents[d].id, href='/artikel/edit/' + documents[d].id)
+						p update	
+			hr
+						
 form(method="post", action="/artikel/new")
-  fieldset
-    legend Artikel
-    p
-      label(for="artikel[title]") Titel:
-        input(type="text", name="artikel[title]")
-    p
-      label(for="artikel[body]") Artikel:
-        textarea(name="artikel[body]")
-  fieldset
-    legend Location
-    p
-      label(for="user[city]") City:
-        input(type="text", name="user[city]")
-    p
-      select(name="user[province]")
-        option(value="") -- Select Province --
-        option(value="AB") Alberta
-        option(value="BC") British Columbia
-        option(value="SK") Saskatchewan
-        option(value="MB") Manitoba
-        option(value="ON") Ontario
-        option(value="QC") Quebec
-  p.buttons
-    input(type="submit", value="Save")
+	fieldset
+		legend Artikel
+		p
+			label(for="artikel[title]") Titel:
+			input(type="text", name="artikel[title]")
+		p
+			label(for="artikel[body]") Artikel:
+			textarea(name="artikel[body]")
+			.tip Benutze Markdown! http://de.wikipedia.org/wiki/Markdown
+	p.buttons
+	input(type="submit", value="Save")

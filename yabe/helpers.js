@@ -1,5 +1,5 @@
 exports.helpers = {
-  appName: 'Yabe',
+  appName: 'yab.',
   version: '0.1',
 
   nameAndVersion: function(name, version) {

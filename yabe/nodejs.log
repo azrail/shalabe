@@ -1,0 +1,27 @@
+debugger listening on port 5858
+Express server listening on port 3001
+DEBUG: [object Object],[object Object]
+[1mGET[0m [33m/[0m 18 ms
+[1mGET[0m [33m/javascripts/json.js[0m 2 ms
+[1mGET[0m [33m/stylesheets/style.css[0m 3 ms
+DEBUG: L�sche: 4d8b2f24ea007b882000000c
+[1mGET[0m [33m/artikel/delete/4d8b2f24ea007b882000000c[0m 4 ms
+DEBUG: [object Object]
+[1mGET[0m [33m/[0m 11 ms
+[1mGET[0m [33m/stylesheets/style.css[0m 3 ms
+[1mGET[0m [33m/javascripts/json.js[0m 2 ms
+DEBUG: Editiere: 4d8b2f10ea007b8820000009
+[1mGET[0m [33m/artikel/edit/4d8b2f10ea007b8820000009[0m 7 ms
+[1mGET[0m [33m/javascripts/json.js[0m 1 ms
+[1mGET[0m [33m/stylesheets/style.css[0m 4 ms
+DEBUG: [object Object]
+[1mGET[0m [33m/[0m 12 ms
+[1mGET[0m [33m/stylesheets/style.css[0m 6 ms
+[1mGET[0m [33m/artikel/4d8b2f10ea007b8820000009[0m 1 ms
+DEBUG: [object Object]
+[1mGET[0m [33m/[0m 17 ms
+[1mGET[0m [33m/stylesheets/style.css[0m 2 ms
+DEBUG: [object Object]
+[1mGET[0m [33m/[0m 12 ms
+[1mGET[0m [33m/javascripts/json.js[0m 1 ms
+[1mGET[0m [33m/stylesheets/style.css[0m 4 ms
