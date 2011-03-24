@@ -64,7 +64,6 @@ app.get('/', function(req, res) {
 			]
 		]
 	}, function(err, documents) {
-		sys.debug(documents);
 		switch (req.params.format) {
 			case 'json':
 				res.send(documents.map(function(d) {
@@ -84,20 +83,14 @@ app.get('/', function(req, res) {
 
 // Create document
 app.post('/artikel/new.:format?', function(req, res) {
-	sys.debug("/artikel/new");
-	sys.debug(req.body.artikel.body);
 	var d = new Document(req.body.artikel);
-	sys.debug(app.set('db-uri'));
-	sys.debug('Document created?');
 	d.save(function() {
-		sys.debug('Document created!');
 		switch (req.params.format) {
 			case 'json':
 				req.flash('info', 'Document created!');
 				res.send(d.toObject());
 				break;
 			default:
-				sys.debug('Document created');
 				req.flash('info', 'Document created!');
 				res.redirect('/');
 		}
@@ -106,7 +99,6 @@ app.post('/artikel/new.:format?', function(req, res) {
 
 // Delete document
 app.get('/artikel/delete/:id?', function(req, res) {
-	sys.debug("L�sche: " + req.params.id);
 	Document.findOne({
 		_id : req.params.id
 	}, function(err, d) {
@@ -121,7 +113,6 @@ app.get('/artikel/delete/:id?', function(req, res) {
 
 // Update document
 app.post('/artikel/update/:id?', function(req, res) {
-	sys.debug("Update: " + req.params.id);
 	Document.findOne({
 		_id : req.params.id
 	}, function(err, d) {
@@ -138,13 +129,11 @@ app.post('/artikel/update/:id?', function(req, res) {
 
 // Edit document
 app.get('/artikel/edit/:id?', function(req, res) {
-	sys.debug("Editiere: " + req.params.id);
 	Document.findOne({
 		_id : req.params.id
 	}, function(err, d) {
 		if (!d)
 			return next(new NotFound('Document not found'));
-		
 		res.render('artikel/edit.jade', {
 			title : 'yab.',
 			locals : {
